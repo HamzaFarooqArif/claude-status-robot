@@ -4,6 +4,12 @@ A little animated pixel robot that shows what Claude Code is doing — in your W
 system tray and an optional floating widget. No hardware, no Python, nothing to install
 beyond what's already on Windows.
 
+![The Claude status robot — floating widget and tray icon](assets/screenshot.png)
+
+When a session needs you, it chirps and pops a toast (with the robot as its icon):
+
+![WAIT toast — "Claude needs you · Waiting: claude_status"](assets/toast.png)
+
 | State  | Meaning                              | Robot                                   |
 | ------ | ------------------------------------ | --------------------------------------- |
 | `BUSY` | Claude is working                    | amber, marching legs, breathing glow    |
