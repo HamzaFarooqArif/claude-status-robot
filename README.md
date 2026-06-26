@@ -1,20 +1,45 @@
 # Claude Code Status Robot 🤖
 
-A little animated pixel robot that shows what Claude Code is doing — in your Windows
-system tray and an optional floating widget. No hardware, no Python, nothing to install
-beyond what's already on Windows.
+**You fire off a prompt, tab away to do real work… and forget Claude is sitting there waiting for you.**
+
+Five minutes later you check back — it stalled on a permission prompt the whole time. Or you've got
+*three* Claude Code sessions running across three projects and you have no idea which one needs you,
+which one's still grinding, and which one finished ten minutes ago.
+
+There's no light. No sound. No glance-able "is it my turn yet?" Just you, alt-tabbing back and forth,
+babysitting a terminal.
+
+**Meet your status robot.** 🤖
 
 ![The Claude status robot — floating widget and tray icon](assets/demo.gif)
 
-When a session needs you, it chirps and pops a toast (with the robot as its icon):
+A tiny animated pixel robot lives in your system tray and tells you — at a glance, across *every* session —
+exactly what Claude is doing:
+
+- 🟠 **Working?** It marches and breathes amber.
+- 🟡 **Needs you?** It strobes yellow, shakes, chirps in a cute robot voice, and pops a toast.
+- 🔵 **Done / idle?** It dozes off with a slow blue blink.
+
+Pop out the floating widget and you get **one robot per session** — sorted so whoever needs you is on top.
+Never babysit a terminal again.
 
 ![WAIT toast — "Claude needs you · Waiting: claude_status"](assets/toast.png)
 
-| State  | Meaning                              | Robot                                   |
-| ------ | ------------------------------------ | --------------------------------------- |
-| `BUSY` | Claude is working                    | amber, marching legs, breathing glow    |
-| `WAIT` | Claude is waiting for your input     | yellow, strobing + shaking + robot voice|
-| `IDLE` | Claude is done / idle                | dim blue, resting (slow blink)          |
+> No hardware. No Python. No accounts. Nothing to install beyond what's already on Windows —
+> just hooks, a state file, and one PowerShell script.
+
+## 60-second install
+
+```powershell
+git clone https://github.com/hamzafarooqarif/claude-status-robot.git
+cd claude-status-robot
+powershell -ExecutionPolicy Bypass -File install.ps1 -StartAtLogin
+```
+
+That's it. `install.ps1` wires up the Claude Code hooks, unblocks the files, and creates a
+`Claude Status.lnk` shortcut — `-StartAtLogin` also drops it in your Startup folder so the robot
+is there every time you log in. Open `/hooks` in Claude Code once (or restart it) so the new hooks
+load, and the robot starts reporting. Changed your mind? `uninstall.ps1` removes everything.
 
 ## How it works
 
@@ -101,6 +126,14 @@ Settings dialog doesn't cover:
 
 Regenerate / re-pitch the voices: edit `assets\make_voices.ps1` (notes and `$Transpose`,
 where `1.0` = original pitch, `0.5` = an octave down) and re-run it.
+
+## State reference
+
+| State  | Meaning                              | Robot                                   |
+| ------ | ------------------------------------ | --------------------------------------- |
+| `BUSY` | Claude is working                    | amber, marching legs, breathing glow    |
+| `WAIT` | Claude is waiting for your input     | yellow, strobing + shaking + robot voice|
+| `IDLE` | Claude is done / idle                | dim blue, resting (slow blink)          |
 
 ## Known limitations
 
