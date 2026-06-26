@@ -1,0 +1,8 @@
+# personal / generated
+*.bak
+Thumbs.db
+desktop.ini
+*.log
+
+# the launch shortcut is regenerated per-machine by install.ps1
+Claude Status.lnk
